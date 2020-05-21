@@ -4,6 +4,8 @@ docker container run -it alpine sh 				#-it is used with run command to run an i
 docker container run --rm hello_world			#--rm deletes the container after it exits
 docker container run --name cont hello_world	#Gives user defined name "cont" to the container
 docker container run -p 80:80 ngnix				#-p creates a port mapping, 80 of local to 80 of container
+docker container run -p 80:80 -v "C:/Users/harsh/html:/usr/share/nginx/html" nginx
+												#Share static html content to the container
 												#Ctrl+d terminates the running container
 												#Ctrl+p and then Ctrl+q brings us back to out local machine but container is still running(Only works if -it is used)
 docker container ls								#Shows all running containers
