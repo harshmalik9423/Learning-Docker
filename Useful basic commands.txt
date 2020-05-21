@@ -1,3 +1,14 @@
-docker container run hello-world		#hello-world image is used to build and run a container
-docker container run alpine sh			#This will run but do nothing as alpine shell is an interactive program
-docker container run -it alpine sh 		#-it is used with run command to run an interactive program
+docker container run hello-world				#hello-world image is used to build and run a container
+docker container run alpine sh					#This will create a new container but do nothing as alpine shell is an interactive program
+docker container run -it alpine sh 				#-it is used with run command to run an interactive program
+												#Ctrl+d terminates the running container
+												#Ctrl+p and then Ctrl+q brings us back to out local machine but container is still running(Only works if -it is used)
+docker container ls								#Shows all running containers
+docker container ls -a 							#Shows all container(running or not)
+docker container attach NAME					#Attaches the user back to the shell of a running container named NAME
+docker container start NAME						#Restarts a terminated container "NAME"
+docker container stop NAME 						#Terminates a running container "NAME"
+docker container run -itd alpine sh 			#-itd starts a container in detached mode. You can attach again using attach command
+docker container rm CONT_ID						#removes a container with the given id
+docker container ls -aq							#-aq returns only this IDs of the containers
+docker container rm $(docker container ls -aq)	#Removes all containers
