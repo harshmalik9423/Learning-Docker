@@ -1,0 +1,3 @@
+docker container run hello-world		#hello-world image is used to build and run a container
+docker container run alpine sh			#This will run but do nothing as alpine shell is an interactive program
+docker container run -it alpine sh 		#-it is used with run command to run an interactive program
