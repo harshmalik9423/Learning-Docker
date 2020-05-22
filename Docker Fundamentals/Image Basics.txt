@@ -3,3 +3,5 @@ docker image rm hello-world:latest								#Removes hello-world image
 docker image pull hello-world:linux								#Downloads hello-world images locally
 docker image build -t myalpine:latest .							#Builds an image from a Dockerfile in current(.) directory
 docker container run -it myalpine:latest						#Running the self made image
+docker image tag myalpine:latest harsh/myalpine:latest			#Adding a namespace to the image
+docker image push zerxan/myalpine:latest						#Pushes the image to docker.io
