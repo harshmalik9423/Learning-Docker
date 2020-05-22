@@ -19,3 +19,11 @@ docker container ls -aq							#-aq returns only this IDs of the containers
 docker container rm $(docker container ls -aq)	#Removes all containers
 docker image ls									#lists all local images. -q will list the image IDs
 docker image rm NAME_OR_ID						#Removes a docker image of given name of ID
+
+												#Container are isolated from each other in following namespaces- pit, net, mount
+												#One conatiner can communicate with other container over a network
+docker network ls 								#Displays all available networks
+docker network create test 						#Creates a user defined network called test(Bridge by default)
+docker container run --rm -it --name c1 --network test alpine sh 
+												#Creates a container named c1 which is connected to the test network
+												
