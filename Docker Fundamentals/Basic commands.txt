@@ -1,6 +1,8 @@
 docker container run hello-world				#hello-world image is used to build and run a container
 docker container run alpine sh					#This will create a new container but do nothing as alpine shell is an interactive program
 docker container run -it alpine sh 				#-it is used with run command to run an interactive program
+												#-i is used to send input to container
+												#-t is used to make a pseudo TTY for the shell to interact with the terminal
 docker container run --rm hello_world			#--rm deletes the container after it exits
 docker container run --name cont hello_world	#Gives user defined name "cont" to the container
 docker container run -p 80:80 ngnix				#-p creates a port mapping, 80 of local to 80 of container
@@ -28,3 +30,5 @@ docker network create test 						#Creates a user defined network called test(Bri
 docker network rm test 							#Removes a user defined network named test
 docker container run --rm -it --name c1 --network test alpine sh 
 												#Creates a container named c1 which is connected to the test network
+docker container run --rm -it --name c2 --link c1 alpine sh
+												#Create c1 and links it to c2

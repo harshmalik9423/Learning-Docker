@@ -1,0 +1,2 @@
+docker container exec 76ac46a93fb4 cat /etc/nginx/nginx.conf				#*Same as below*
+docker container exec -it 76ac46a93fb4 sh									#Executes a command within a container
