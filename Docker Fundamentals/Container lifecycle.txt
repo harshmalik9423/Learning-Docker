@@ -1,2 +1,5 @@
 docker container exec 76ac46a93fb4 cat /etc/nginx/nginx.conf				#*Same as below*
 docker container exec -it 76ac46a93fb4 sh									#Executes a command within a container
+docker container logs -f c1													#follows(due to -f) with the logs of the container
+
+#The logs of a container may be written to a file or displayed by linking the file to /dev/stdout
