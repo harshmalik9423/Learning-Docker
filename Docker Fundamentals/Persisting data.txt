@@ -1,0 +1,2 @@
+docker container run --volume "C:/Users/harsh/Learning Docker/Docker Fundamentals/html:/var/www/html:ro" -p 80:80 zerxan/mynginx:latest
+																		#Above command bind mounts(--v or --volume) the given volume in ro(read only) mode at port 80
