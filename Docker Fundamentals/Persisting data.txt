@@ -1,2 +1,8 @@
 docker container run --volume "C:/Users/harsh/Learning Docker/Docker Fundamentals/html:/var/www/html:ro" -p 80:80 zerxan/mynginx:latest
-																		#Above command bind mounts(--v or --volume) the given volume in ro(read only) mode at port 80
+																			#Above command bind mounts(--v or --volume) the given volume in ro(read only) mode at port 80
+docker container run --volume "$(pwd)/html:/var/www/html:ro" -p 80:80 nginx:latest
+																			#Shortened by using print working directory or $(pwd)
+docker container run --mount type=bind,src="$(pwd)/html",destination="/usr/share/nginx/html",readonly -p 80:80 nginx:latest 
+																			#--mount option uses key-value pairs. We've ran the container in bind mode here and set at readonly(mostly preffered)
+docker volume ls 															
+																			#Shows the volumes being used on the host system. These are different from bind mount as docker controls structure of volume and bind mounts are dependent on the directory structure of the host machine
