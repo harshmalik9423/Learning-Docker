@@ -10,3 +10,30 @@ docker container run -it --volume my-volume:/data alpine:latest				#Will create 
 																			#Volumes does not increase the size of containers. Even after we delete the container, the volume exists on host system
 docker container run -it --mount type=volume,src=my-volume,dst=/data alpine:latest
 																			#Creating a volume using --mount option
+docker volume inspect my-volume												#Displays details of my-volume
+docker volume prune															#Deleted all unused volumes
+docker volume create a-volume												#Creates a volume "a-volume"
+docker container run --rm -v /data alpine:latest echo hello					#--rm will delete the anonymous volume after the container quits
+																			#Above is not true for named volumes
+
+## Volumes vs bind mounts
+* bind mounts rely on the file system structure of the host
+  * You need to manage them
+  * The container has access to the files on the Docker host
+* Volumes are managed by Docker
+  * Independent of the file system structure on the host
+  * Easy to migrate and backup
+  * Can be managed via the Docker client
+  * Can be pre-populated with data from a container
+
+## When to use what?
+### bind mount
+* When you want to access the data from the host and the container
+  * source code
+  * configuration files
+
+### Volume
+* When you want to persist data from the container
+* When you want to share data between containers
+  * backups
+  * configuration
