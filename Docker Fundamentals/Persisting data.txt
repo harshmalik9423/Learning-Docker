@@ -6,3 +6,7 @@ docker container run --mount type=bind,src="$(pwd)/html",destination="/usr/share
 																			#--mount option uses key-value pairs. We've ran the container in bind mode here and set at readonly(mostly preffered)
 docker volume ls 															
 																			#Shows the volumes being used on the host system. These are different from bind mount as docker controls structure of volume and bind mounts are dependent on the directory structure of the host machine
+docker container run -it --volume my-volume:/data alpine:latest				#Will create a a volume "my-volume" inside th container
+																			#Volumes does not increase the size of containers. Even after we delete the container, the volume exists on host system
+docker container run -it --mount type=volume,src=my-volume,dst=/data alpine:latest
+																			#Creating a volume using --mount option
