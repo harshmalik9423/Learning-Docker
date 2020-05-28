@@ -1,0 +1,3 @@
+#For COPY instruction in Dockerfile
+COPY ./html /var/www/html						#Will copy the whole folder from host to the container
+COPY ./html/*.html /var/www/html/				#Will only copy the HTML files (using wildcards)
