@@ -1,3 +1,9 @@
-#For COPY instruction in Dockerfile
-COPY ./html /var/www/html						#Will copy the whole folder from host to the container
-COPY ./html/*.html /var/www/html/				#Will only copy the HTML files (using wildcards)
+#For COPY and ADD instruction in Dockerfile
+COPY ./html /var/www/html										#Will copy the whole folder from host to the container
+COPY ./html/*.html /var/www/html/								#Will only copy the HTML files (using wildcards)
+
+ADD ./html.tar.gz /var/www/										#Will add the extracted contents of the tar file in the container
+ADD http://example.com/index.html /var/www/html/index.html 		#Will download the contents of given website into index.html
+
+#.dockerignore file
+Add the path of directories or files to this file which you want to ignore in the builds
