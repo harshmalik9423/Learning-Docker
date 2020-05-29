@@ -1,0 +1,9 @@
+docker container run -p 80:80 -p 81:81 nginx						#Publishing multiple ports
+docker container run -p 80-99:80-99 nginx							#Publishing a range of ports
+
+EXPOSE 80															#In a Dockerfile, this is used to tell docker that port 80 is running a 																	service
+docker container run -P nginx										#Publish all exposed ports to random ports
+docker container run -p 80 nginx 									#Publish the given container port to a random port
+
+docker container run --link webserver alpine						#Link the alpine container to webserver
+																	#Docker created an entry in /etc/hosts file when the container started
