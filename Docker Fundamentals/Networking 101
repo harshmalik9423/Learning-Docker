@@ -6,4 +6,9 @@ docker container run -P nginx										#Publish all exposed ports to random port
 docker container run -p 80 nginx 									#Publish the given container port to a random port
 
 docker container run --link webserver alpine						#Link the alpine container to webserver
+docker container run --link webserver:ws alpine						#This creates an alias "ws" that can be used in place of "webserver"
 																	#Docker created an entry in /etc/hosts file when the container started
+																	#If webserver is deleted an recreated, it might be assigned a new IP address and alpine container will not be able to communicate with it, that's why links are deprecated
+
+docker network create mynet											#Creates a user defined bridge network;Docker assigns an IP range to it
+docker network inspect mynet										#Gives the details about the network including IP range
