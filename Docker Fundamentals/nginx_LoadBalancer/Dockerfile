@@ -1,3 +1,3 @@
 FROM jfahrer/nginx
 
-COPY proxy.conf /etc/nginx/sites-available/default
+COPY proxy1.conf /etc/nginx/sites-available/default
