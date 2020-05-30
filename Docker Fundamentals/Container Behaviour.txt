@@ -1,0 +1,1 @@
+export PS1='test '											#In alpine container, we can use PS1 env variable to change the name of bash shell
