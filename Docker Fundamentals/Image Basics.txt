@@ -5,3 +5,4 @@ docker image build -t myalpine:latest .							#Builds an image from a Dockerfile
 docker container run -it myalpine:latest						#Running the self made image
 docker image tag myalpine:latest harsh/myalpine:latest			#Adding a namespace to the image
 docker image push zerxan/myalpine:latest						#Pushes the image to docker.io
+docker rmi $(docker images -f “dangling=true” -q)				#Removes the dangling or untagged images(<none>)
