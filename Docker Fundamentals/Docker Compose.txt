@@ -8,3 +8,4 @@ docker-compose rm alpine								#Removes all containers in the alpine service
 docker-compose build									#Will build all the images
 docker-compose build lb									#Will only build lb image
 docker-compose up --build								#Will automatically build or rebuild images
+docker-compose up -d --scale webapp=5					#Scales up or down the given container
