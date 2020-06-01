@@ -1,13 +1,6 @@
 version: '3.3'
 
-services:
-  web:
-    image: nginx:latest
-    ports:
-      - 80:80
-    volumes:
-      - ./html:/usr/share/nginx/html
-  
+services:  
   pg:
     image: postgres:9.6-alpine
     environment:
@@ -27,13 +20,21 @@ services:
     image: jfahrer/demo_web_app:wait_for_pg
     depends_on:
       - pg
-    ports:
-      - 9292:9292
     environment:
       - POSTGRES_DB
       - POSTGRES_USER
       - POSTGRES_PASSWORD
       - POSTGRES_HOST
+
+  lb:
+    image: jfahrer/lb:v2
+    environment:
+      - PROXY_UPSTREAM
+    depends_on:
+      - webapp
+    ports:
+      - 80:80
+
 
 volumes:
   pg-data:
