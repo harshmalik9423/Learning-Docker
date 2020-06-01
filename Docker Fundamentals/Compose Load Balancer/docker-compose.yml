@@ -27,7 +27,7 @@ services:
       - POSTGRES_HOST
 
   lb:
-    image: jfahrer/lb:v2
+    image: zerxan/lb:latest
     environment:
       - PROXY_UPSTREAM
     depends_on:
