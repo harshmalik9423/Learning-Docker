@@ -1,1 +1,7 @@
-docker-compose up										#Executes the .yml file present in the wd 
+docker-compose up										#Executes the .yml file present in the wd
+docker-compose down										#Deletes all the resources made by "up" command
+docker-compose up service_name							#Run only that service/continer that's mentioned
+docker-compose ps 										#Shows running containers in the project
+docker-compose exec alpine sh 							#Execute "sh" command in alpine container
+docker-compose stop alpine								#Stops all containers in the alpine service
+docker-compose rm alpine								#Removes all containers in the alpine service
