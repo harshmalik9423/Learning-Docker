@@ -1,0 +1,13 @@
+docker image history zerxan/myalpine:latest						#Shows the intermediate images/layers used
+
+###
+* Docker compares the checksums of files whene executing COPY or ADD.
+* COPY will only be re-executed if data is change in the file.
+* ADD checks for the timestamp. If a website that we've added has a changed timestamp in header, it'll execute again
+
+* Total size of an image is the cumulative sum of all intermediate layers. So if one command has added data, and another one has deleted it, the size of data will still be counted in image's size.
+* To tackle this, we chain multiple commmands, like chaining multiple run commands. For example, the below command removes cache of apt command from alpine image. We can use it in chain with other to actually be effective.
+
+rm -rf /var/cache/apt*											#Deletes the cache files
+
+* The only disk space required by a container is of the layer it creates on top of its image's layer i.e. writable layer.
