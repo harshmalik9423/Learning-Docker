@@ -9,3 +9,12 @@ services:
       - .:/usr/src/app
     ports:
       - 3000:3000
+
+  lb:
+    image: zerxan/lb:latest
+    environment:
+      - PROXY_UPSTREAM="nodewebapp:3000"
+    depends_on:
+      - nodewebapp
+    ports:
+      - 80:80
