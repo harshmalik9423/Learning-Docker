@@ -18,3 +18,5 @@ docker events --filter scope=swarm					#Only see events that affect the whole sw
 docker events --filter scope=local					#Only see event of nodes that your current host is connected to
 docker events --filter scope=container				#Only container realted events 
 docker events --filter scope=destroy				#Events related to destorying(of containers etc)
+
+docker service create --constraint node.hostname==node3 --name stable alpine:3.6 	#Tasks run on node3
