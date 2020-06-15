@@ -1,0 +1,7 @@
+ocker container run -d --memory 256M --cpus 0.25 alpine:latest							#Decided max memory and cpus
+docker container run -d --memory-reservation 256M --cpu-shares 1024 alpine:latest		#Defines minimum memory req.
+
+##Mounting a tmpfs in various ways:
+docker container run --tmpfs /tmp -it alpine:latest										
+docker container run --mount type=tmpfs,dst=/tmp -it alpine:latest
+docker container run --mount type=tmpfs,dst=/tmp --read-only -it alpine:latest			#tmpfs can be accessed even in read-only mode to store important data

@@ -1,0 +1,19 @@
+docker swarm init										#Activates the Swarmm mode
+docker node ls											#Shows active nodes
+docker service create alpine:3.6 tail -f /dev/null		#Creates a service running a container
+docker service update serviceName --replicas 3			#Updates number of replicas for the service
+docker service ps serviceName							#Gives details about all tasks running in a service
+docker service rm serviceName							#Deletes a service and its containers
+docker service create --name publish-demo --p 8080:8080 jfahrer/swarm-demo-frontend:v1
+docker service scale publish-demo=5
+
+docker service update --image jfahrer/swarm-demo-frontend:v2 punlish-demo		#Updates image for tasks
+docker service rollback publish-demo					#This reverts service's latest change
+docker serivce update --update-failure-action rollback publish-demo				#If an update fails, service will automatically rollback
+
+docker swarm update --task-history-limit 10				#Updates the max shutdown tasks swarm will keep around
+
+##Interservice Communication
+docker network create --driver overlay service-net		#Bridges are not supported for services
+docker service create --name service1 --network service-net alpine:3.6 ping service2
+docker service create --name service2 --network service-net alpine:3.6 tail -f /dev/null

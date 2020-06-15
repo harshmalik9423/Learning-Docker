@@ -1,0 +1,20 @@
+##Starting 3 machines
+docker-machine create --driver vmwarefusion --vmwarefusion-cpu-count 1 --vmwarefusion-memory-size 1024 node1
+docker-machine create --driver vmwarefusion --vmwarefusion-cpu-count 1 --vmwarefusion-memory-size 1024 node2
+docker-machine create --driver vmwarefusion --vmwarefusion-cpu-count 1 --vmwarefusion-memory-size 1024 node3
+
+##When we'll run 'docker sware init', it'll give us a command for others to join the swarm
+##Routing mesh takes care of incoming traffic. If a task is running on a node, it can be accessed rom IP of other nodes as well
+
+eval $(docker-machine env node1)					#Configures the shell to use node1
+docker-machine ssh node2							#Opens ssh session to node2
+
+docker node promote node2							#Promotes node2 from worker to manager
+docker node leave -f 								#Puts node back into standard mode
+
+docker service logs taskID							#Gives logs for a task
+docker events										#Access logs of docker daemon
+docker events --filter scope=swarm					#Only see events that affect the whole swarm
+docker events --filter scope=local					#Only see event of nodes that your current host is connected to
+docker events --filter scope=container				#Only container realted events 
+docker events --filter scope=destroy				#Events related to destorying(of containers etc)

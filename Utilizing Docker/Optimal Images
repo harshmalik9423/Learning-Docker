@@ -1,0 +1,12 @@
+docker image build -t jfahrer/greeter:lateast --build-arg NAME=Julian .			#Using build arguments
+docker-compose build --build-arg NAME=Jeffrey app								#Using build arguments in compose
+docker image build --pull -t jfahrer/myalpine:latest .							#Pulls an image and gives it custom tag
+
+docker image build -t jfahrer/myalpine:bash --cache-from jfahrer/myalpine:bash .	#To specify an image to be used as a build cache
+
+${PG_VERSION:-9.6}																#Way of defining deafult value of build argument in dockerfile	
+
+##Build arguments can't be directly used in CMD command in dockerfile
+##Build arguments reveal secrets or their passed values in "docker image history imageName"
+##"ONBUILD" adds an instruction which is executed when the image is used as a base for another image
+##Using multi stage builds, we can use multiple FROM commands and make a lighter image
